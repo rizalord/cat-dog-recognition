@@ -18,6 +18,7 @@ import {
   Heading,
 } from "@chakra-ui/react"
 import { MoonIcon, SunIcon } from "@chakra-ui/icons"
+import ReachLink from "next/link"
 
 const NavLink = ({ children }: { children: ReactNode }) => (
   <Link
@@ -47,51 +48,34 @@ export default function DefaultNavbar() {
           maxW={{ base: "5xl" }}
           mx="auto"
         >
-          <Heading
-            color={useColorModeValue("white", "gray.100")}
-            fontSize={{ base: "lg", md: "2xl" }}
-          >
-            Cat Dog Recognizer
-          </Heading>
+          <ReachLink href="/" passHref>
+            <Heading
+              color={useColorModeValue("white", "gray.100")}
+              fontSize={{ base: "lg", md: "2xl" }}
+              as={"a"}
+            >
+              Cat Dog Recognizer
+            </Heading>
+          </ReachLink>
 
           <Flex alignItems={"center"}>
-            <Stack direction={"row"} spacing={7}>
+            <Stack direction={"row"} spacing={7} alignItems="center">
               <Button onClick={toggleColorMode}>
                 {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
               </Button>
 
-              <Menu>
-                <MenuButton
-                  as={Button}
-                  rounded={"full"}
-                  variant={"link"}
-                  cursor={"pointer"}
-                  minW={0}
-                >
-                  <Avatar
-                    size={"sm"}
-                    src={"https://avatars.dicebear.com/api/male/username.svg"}
-                  />
-                </MenuButton>
-                <MenuList alignItems={"center"}>
-                  <br />
-                  <Center>
-                    <Avatar
-                      size={"2xl"}
-                      src={"https://avatars.dicebear.com/api/male/username.svg"}
-                    />
-                  </Center>
-                  <br />
-                  <Center>
-                    <p>Username</p>
-                  </Center>
-                  <br />
-                  <MenuDivider />
-                  <MenuItem>Your Servers</MenuItem>
-                  <MenuItem>Account Settings</MenuItem>
-                  <MenuItem>Logout</MenuItem>
-                </MenuList>
-              </Menu>
+              <a href="https://github.com/rizalord/cat-dog-recognition" target="_blank">
+                <Avatar
+                  size={"sm"}
+                  bg="transparent"
+                  cursor="pointer"
+                  src={
+                    colorMode === "light"
+                      ? "/images/github-dark.png"
+                      : "/images/github-light.png"
+                  }
+                />
+              </a>
             </Stack>
           </Flex>
         </Flex>

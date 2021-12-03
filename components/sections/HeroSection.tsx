@@ -10,6 +10,7 @@ import {
   useColorModeValue,
   createIcon,
 } from "@chakra-ui/react"
+import Link from "next/link"
 
 export default function HeroSection() {
   return (
@@ -40,7 +41,7 @@ export default function HeroSection() {
           </Heading>
           <Text color={"gray.500"}>
             Predict wether the image that you upload is a cat or a dog using
-            Machine Learning and Tenserflow. 100% free and open source.
+            Machine Learning and Tensorflow. 100% free and open source.
           </Text>
           <Stack
             direction={"column"}
@@ -49,17 +50,19 @@ export default function HeroSection() {
             alignSelf={"center"}
             position={"relative"}
           >
-            <Button
-              colorScheme={"blue"}
-              bg={"blue.200"}
-              rounded={"full"}
-              px={6}
-              _hover={{
-                bg: "blue.400",
-              }}
-            >
-              Try Now
-            </Button>
+            <Link href="/predict">
+              <Button
+                colorScheme={"blue"}
+                bg={"blue.200"}
+                rounded={"full"}
+                px={6}
+                _hover={{
+                  bg: "blue.400",
+                }}
+              >
+                Try Now
+              </Button>
+            </Link>
           </Stack>
         </Stack>
       </Container>
