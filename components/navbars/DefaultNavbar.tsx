@@ -64,7 +64,11 @@ export default function DefaultNavbar() {
                 {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
               </Button>
 
-              <a href="https://github.com/rizalord/cat-dog-recognition" target="_blank">
+              <a
+                href="https://github.com/rizalord/cat-dog-recognition"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <Avatar
                   size={"sm"}
                   bg="transparent"

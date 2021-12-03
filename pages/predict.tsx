@@ -125,7 +125,13 @@ const Predict: NextPage = () => {
             }}
           >
             {image ? (
-              <Image src={image} width="100%" height="100%" borderRadius="sm" />
+              <Image
+                src={image}
+                width="100%"
+                height="100%"
+                borderRadius="sm"
+                alt="uploaded-image"
+              />
             ) : (
               <Flex
                 justifyContent="center"

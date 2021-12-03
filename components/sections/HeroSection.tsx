@@ -15,12 +15,6 @@ import Link from "next/link"
 export default function HeroSection() {
   return (
     <>
-      <Head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
 
       <Container maxW={"3xl"}>
         <Stack
@@ -50,7 +44,7 @@ export default function HeroSection() {
             alignSelf={"center"}
             position={"relative"}
           >
-            <Link href="/predict">
+            <Link href="/predict" passHref>
               <Button
                 colorScheme={"blue"}
                 bg={"blue.200"}
