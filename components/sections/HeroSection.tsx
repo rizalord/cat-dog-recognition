@@ -53,6 +53,7 @@ export default function HeroSection() {
                 _hover={{
                   bg: "blue.400",
                 }}
+                id={"predict-button"}
               >
                 Try Now
               </Button>

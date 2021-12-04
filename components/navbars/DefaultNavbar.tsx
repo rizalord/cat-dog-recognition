@@ -68,6 +68,7 @@ export default function DefaultNavbar() {
                 href="https://github.com/rizalord/cat-dog-recognition"
                 target="_blank"
                 rel="noreferrer"
+                id="github-link"
               >
                 <Avatar
                   size={"sm"}
