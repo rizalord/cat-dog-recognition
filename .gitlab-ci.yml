@@ -17,6 +17,7 @@ test-app:
   image: cypress/base
   before_script:
     - npm install
+    - npm run build
     - npm run start &
   script:
     - sleep 20
