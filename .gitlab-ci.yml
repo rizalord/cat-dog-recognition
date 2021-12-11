@@ -9,12 +9,6 @@ build-app:
     - npm install
   script:
     - npm run build
-  artifacts:
-    paths:
-      - node_modules
-      - .next
-      - build
-    expire_in: 1d
 
 test-app:
   stage: test
