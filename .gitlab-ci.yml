@@ -16,7 +16,7 @@ test-app:
   stage: test
   image: node:alpine
   script:
-    - npm run e2e:headless
+    - npm run test:headless
   artifacts:
     untracked: true
 
