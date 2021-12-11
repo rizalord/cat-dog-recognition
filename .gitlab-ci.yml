@@ -16,13 +16,17 @@ test-app:
   stage: test
   image: cypress/base
   before_script:
-    - npm install
-    - npm run build
     - npm run start &
   script:
     - sleep 20
     - $(npm bin)/cypress run
+  cache:
+    paths:
+      - node_modules
   artifacts:
-    untracked: true
+    paths:
+      - .next
+      - build
+    expire_in: 1 day
 
 
