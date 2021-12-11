@@ -1,6 +1,6 @@
 stages:
-  # - build
-  # - test
+  - build
+  - test
   - publish
   - deploy
 
@@ -8,31 +8,31 @@ variables:
   TAG_LATEST: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME:latest
   TAG_COMMIT: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME:$CI_COMMIT_SHORT_SHA
 
-# build-app:
-#   stage: build
-#   image: node:alpine
-#   before_script:
-#     - npm install
-#   script:
-#     - npm run build
-#   artifacts:
-#     paths:
-#       - node_modules
-#       - .next
-#       - build
-#     expire_in: 1d
+build-app:
+  stage: build
+  image: node:alpine
+  before_script:
+    - npm install
+  script:
+    - npm run build
+  artifacts:
+    paths:
+      - node_modules
+      - .next
+      - build
+    expire_in: 1d
 
-# test-app:
-#   stage: test
-#   image: cypress/base
-#   dependencies: []
-#   before_script:
-#     - npm install
-#     - npm run build
-#     - npm run start &
-#   script:
-#     - sleep 10
-#     - npm run cypress:headless
+test-app:
+  stage: test
+  image: cypress/base
+  dependencies: []
+  before_script:
+    - npm install
+    - npm run build
+    - npm run start &
+  script:
+    - sleep 10
+    - npm run cypress:headless
 
 publish:
   image: docker:latest
@@ -51,21 +51,13 @@ deploy:
   dependencies: []
   tags:
     - deployment
-  before_script:
-    - 'which ssh-agent || ( apk update && apk add --no-cache openssh )'
-    - mkdir -p ~/.ssh
-    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
-    - chmod 700 ~/.ssh/id_rsa
-    - eval "$(ssh-agent -s)"
-    - ssh-add ~/.ssh/id_rsa
-    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   script:
-    # - chmod og= $ID_RSA
-    # - apk update && apk add openssh-client
-    - ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY"
-    - ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker pull $TAG_COMMIT"
-    - ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker container rm -f cdir-next || true"
-    - ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker run -d -p 3000:3000 --name cdir-next $TAG_COMMIT"
+    - chmod og= $ID_RSA
+    - apk update && apk add openssh-client
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY"
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker pull $TAG_COMMIT"
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker container rm -f cdir-next || true"
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker run -d -p 3000:3000 --name cdir-next $TAG_COMMIT"
   environment:
     name: production
   only:
