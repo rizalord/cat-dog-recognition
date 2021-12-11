@@ -16,7 +16,8 @@ test-app:
   stage: test
   image: node:alpine
   before_script:
-    - nohub npm run start &
+    - npm install
+    - npm run start &
   script:
     - sleep 20
     - npm run cypress:headless
