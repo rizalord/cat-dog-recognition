@@ -20,7 +20,5 @@ test-app:
   script:
     - sleep 10
     - npm run cypress:headless
-  artifacts:
-    untracked: true
 
 
