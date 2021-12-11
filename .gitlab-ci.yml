@@ -2,40 +2,25 @@ stages:
   - build
   - test
 
-# to cache both npm modules and Cypress binary we use environment variables
-# to point at the folders we can list as paths in "cache" job settings
-variables:
-  npm_config_cache: "$CI_PROJECT_DIR/.npm"
-  CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
-
-# cache using branch name
-# https://gitlab.com/help/ci/caching/index.md
-cache:
-  key: ${CI_COMMIT_REF_SLUG}
-  paths:
-    - .npm
-    - cache/Cypress
-    - node_modules
-    - .next
-
 build-app:
   stage: build
-  image: cypress/base
-  script:
+  image: node:alpine
+  before_script:
     - npm install
+  script:
     - npm run build
-    - npx cypress cache path
-    - npx cypress cache list
-    - $(npm bin)/print-env CI
-    - npm run cy:verify
-    - npm run cy:info
+  artifacts:
+    untracked: true
 
 test-app:
   stage: test
   image: cypress/base
-  script:
+  before_script:
+    - npm install
+    - npm run build
     - npm run start &
-    - sleep 5
+  script:
+    - sleep 10
     - npm run cypress:headless
   artifacts:
     untracked: true
