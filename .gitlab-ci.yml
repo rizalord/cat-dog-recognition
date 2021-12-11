@@ -1,27 +1,27 @@
 stages:
-  - build
+  # - build
   - test
 
-build-app:
-  stage: build
-  image: node:alpine
-  before_script:
-    - npm install
-  script:
-    - npm run build
-  artifacts:
-    untracked: true
+# build-app:
+#   stage: build
+#   image: node:alpine
+#   before_script:
+#     - npm install
+#   script:
+#     - npm run build
+#   artifacts:
+#     untracked: true
 
 test-app:
   stage: test
   image: cypress/base
   before_script:
-    - npm install
-    - npm run build
-    - npm run start &
+    - yarn install
+    - yarn build
+    - yarn start &
   script:
     - sleep 10
-    - npm run cypress:headless
+    - yarn cypress:headless
   artifacts:
     untracked: true
 
