@@ -14,13 +14,14 @@ build-app:
       - node_modules
       - .next
       - build
-    expire_in: 1 days
+    expire_in: 1d
 
 test-app:
   stage: test
   image: cypress/base
   before_script:
     - npm install
+    - npm run build
     - npm run start &
   script:
     - sleep 10
