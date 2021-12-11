@@ -22,7 +22,7 @@ build-app:
   stage: build
   image: cypress/base
   script:
-    - yarn install --frozen-lockfile
+    - yarn install
     - yarn build
     - npx cypress cache path
     - npx cypress cache list
