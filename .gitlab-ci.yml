@@ -16,12 +16,12 @@ test-app:
   stage: test
   image: cypress/base
   before_script:
-    - yarn install
-    - yarn build
-    - yarn start &
+    - npm install
+    - npm run build
+    - npm run start &
   script:
     - sleep 10
-    - yarn cypress:headless
+    - npm run cypress:headless
   artifacts:
     untracked: true
 
