@@ -10,14 +10,15 @@ build-app:
   script:
     - npm run build
   artifacts:
-    untracked: true
+    paths:
+      - node_modules/
+      - .next/
 
 test-app:
   stage: test
   image: cypress/base
   before_script:
     - npm install
-    - npm run build
     - npm run start &
   script:
     - sleep 10
