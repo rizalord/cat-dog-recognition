@@ -22,21 +22,19 @@ build-app:
   stage: build
   image: cypress/base
   script:
-    - npm ci
-    - npm run build
+    - yarn install --frozen-lockfile
+    - yarn build
     - npx cypress cache path
     - npx cypress cache list
     - $(npm bin)/print-env CI
-    - npm run cy:verify
-    - npm run cy:info
 
 test-app:
   stage: test
   image: cypress/base
   script:
-    - npm run start &
+    - yarn start &
     - sleep 5
-    - npm run cypress:headless
+    - yarn cypress:headless
   artifacts:
     untracked: true
 
