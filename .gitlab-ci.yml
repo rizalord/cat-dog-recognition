@@ -22,19 +22,21 @@ build-app:
   stage: build
   image: cypress/base
   script:
-    - yarn install
-    - yarn build
+    - npm install
+    - npm run build
     - npx cypress cache path
     - npx cypress cache list
     - $(npm bin)/print-env CI
+    - npm run cy:verify
+    - npm run cy:info
 
 test-app:
   stage: test
   image: cypress/base
   script:
-    - yarn start &
+    - npm run start &
     - sleep 5
-    - yarn cypress:headless
+    - npm run cypress:headless
   artifacts:
     untracked: true
 
