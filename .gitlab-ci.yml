@@ -11,8 +11,10 @@ build-app:
     - npm run build
   artifacts:
     paths:
-      - node_modules/
-      - .next/
+      - node_modules
+      - .next
+      - build
+    expire_in: 1 days
 
 test-app:
   stage: test
