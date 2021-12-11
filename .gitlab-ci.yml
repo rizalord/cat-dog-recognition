@@ -15,8 +15,11 @@ build-app:
 test-app:
   stage: test
   image: node:alpine
+  before_script:
+    - npm run start
   script:
-    - npm run test:headless
+    - sleep 20
+    - npm run cypress:headless
   artifacts:
     untracked: true
 
