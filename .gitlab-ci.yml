@@ -67,4 +67,4 @@ deploy:
   environment:
     name: production
   only:
-    - release
+    - master
