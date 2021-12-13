@@ -62,8 +62,8 @@ deploy:
   script:
     - ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY"
     - ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker pull $TAG_COMMIT"
-    - ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker container rm -f cdir-api || true"
-    - ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker run -d -p 3000:3000 --name cdir-api $TAG_COMMIT"
+    - ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker container rm -f cdir-next || true"
+    - ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker run -d -p 3000:3000 --name cdir-next $TAG_COMMIT"
   environment:
     name: production
   only:
