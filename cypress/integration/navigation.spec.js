@@ -13,7 +13,7 @@ describe("Navigation", () => {
   it("should navigate to the home page after going to predict page", () => {
     cy.get("#predict-button").click()
     cy.url().should("include", "/predict")
-    cy.contains("Cat Dog Recognizer").click()
+    cy.contains("Cat Dog Recognition").click()
     cy.url().should("include", "/")
   })
 })
