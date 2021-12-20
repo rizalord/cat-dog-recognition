@@ -54,7 +54,7 @@ export default function DefaultNavbar() {
               fontSize={{ base: "lg", md: "2xl" }}
               as={"a"}
             >
-              Cat Dog Recognizer
+              Cat Dog Recognition
             </Heading>
           </ReachLink>
 

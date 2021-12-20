@@ -5,6 +5,7 @@ import { Image } from "@chakra-ui/image"
 import React, { useRef, useState } from "react"
 import DefaultLayout from "../components/layouts/DefaultLayout"
 import axios from "axios"
+import Head from "next/head"
 
 enum ButtonState {
   Loading,
@@ -42,6 +43,7 @@ const Predict: NextPage = () => {
     setIsPredicting(true)
     setIsError(null)
 
+    // const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8080/api"
     const baseUrl = "./../api"
     const apiUrl = `${baseUrl}/predict/`
 
@@ -82,6 +84,12 @@ const Predict: NextPage = () => {
 
   return (
     <DefaultLayout>
+      {/* Head */}
+      <Head>
+        <title>Cat Dog Recognition - Predict</title>
+        <meta property="og:title" content="Cat Dog Recognition - Predict" key="title" />
+      </Head>
+      {/* End of Header */}
       <Flex
         maxW={"5xl"}
         flexDirection={{ base: "column", md: "row" }}
