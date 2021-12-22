@@ -43,8 +43,8 @@ const Predict: NextPage = () => {
     setIsPredicting(true)
     setIsError(null)
 
-    // const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8080/api"
-    const baseUrl = "./../api"
+    const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8080/api"
+    // const baseUrl = "./../api"
     const apiUrl = `${baseUrl}/predict/`
 
     const formData = new FormData()
